@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Component    //Q10) use @component
 @Controller   //Q10) use @Controller
-@Repository   //Q100 use @Repository
+@Repository   //Q10) use @Repository
 public class Restaurant {
 
 // @Autowired           Q8) Autowired with fields
