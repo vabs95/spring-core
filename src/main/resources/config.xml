@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.spring"/>
+
+    <!--Q1)Create a class com.spring.Database with 2 instance variables port and name. Configure com.spring.Database class bean in spring container through Spring XML. -->
+  <!--Initialize instance variables using setter method.-->
+
+
+
+    <bean id="database" class="com.spring.Database">
+    <property name="name" value="Akash"/>
+    <property name="port" value="2020"/>
+  </bean>
+
+
+
+<!--Q3)   Configure com.spring.Tea and com.spring.ExpressTea classes beans in Spring XML. create a bean with the name -->
+  <!--teaRestaurant of type com.spring.Restaurant which inject com.spring.Tea object as dependency using setter method.-->
+
+  <bean id="tea" class="com.spring.Tea"/>
+
+
+
+    <!--Q7) Set the scope of the teaRestaurant bean as proptotype and check the scope type after accessing the bean.-->
+
+    <bean name="teaRestaurant" class="com.spring.Restaurant" scope="prototype">
+
+      <property name="hotDrink" ref="tea" />
+  </bean>
+
+
+
+  <!--Using @Autowired annotation-->
+    <bean name="restaurant" class="com.spring.Restaurant"/>
+
+
+
+
+
+
+    <!--Q6) Autowire hotDrink in com.spring.Restaurant with tea bean byName, byType and constructor.-->
+
+     <!--<alias name="tea" alias="hotDrink"/>-->
+
+    <!--<bean id = "restaurant" class="com.spring.Restaurant" autowire="byName" />-->
+
+
+     <!--<bean id="restaurant" class="com.spring.Restaurant" autowire="byType"/>-->
+
+
+
+    <!--// Autowire by constructor-->
+    <!--<bean id="restaurant" class="com.spring.Restaurant" autowire="constructor"/>-->
+
+
+
+
+
+
+
+
+    <!--Q4) Get both the beans and invoke prepareHotDrink method via hotDrink-->
+  <!--instance variables. Try inner bean with expressTeaRestaurant.-->
+
+  <bean name="expressTeaRestaurant" class="com.spring.Restaurant">
+
+    <property name="hotDrink">
+
+      <bean id="expressTea" class="com.spring.ExpressTea"/>
+
+    </property>
+  </bean>
+
+
+
+
+
+  <!--Q5) Create Class com.spring.Complex as follows: class complex {    List list;-->
+  <!--Set set;-->
+
+  <!--Map map;-->
+
+  <!--} Initialize all the instance variables of the complex class using Spring XML. Give bean name as-->
+
+  <!--complexBean. Get the bean and display the properties.-->
+
+  <bean id="complex" class="com.spring.Complex">
+    <property name="list">
+      <list>
+        <value>"Akash"</value>
+        <value>"Vaibhav"</value>
+        <value>"Abhi"</value>
+      </list>
+    </property>
+
+    <property name="set">
+      <set>
+        <value>1</value>
+        <value>2</value>
+        <value>1</value>
+      </set>
+    </property>
+
+    <property name="map">
+      <map>
+        <entry key="key1" value="1"/>
+        <entry key="key2" value="2"/>
+        <entry key="key3" value="3"/>
+      </map>
+    </property>
+
+  </bean>
+</beans>
+
